@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* more on this crazy alphanumerical value in a minute! */
+    background: #9bbc0f;
+    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Press Start 2P', cursive;
+}
+
+:root {
+    --darkest: #0f380f;
+    --dark: #306230;
+    --light: #8bac0f;
+    --lightest: #9bbc0f;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: var(--darkest);
+    margin-top: 20px;
+}
+
+main {
+    text-align: center;
+}
+
+main h2 {
+    color: var(--dark);
+    margin-top: 50px;
+    text-align: center;
+
+}
+
+#blink-me {
+    animation: blinker 1s linear infinite;
+} 
+
+@keyframes blinker {
+    1% {
+    opacity: 0;
+    }
+}
+
+
+main p {
+    color: var(--darkest);
+    margin: 10px 300px;
+}
+
+#start-quiz {
+    width: 100px;
+    height: 50px;
+    border-radius: 16px;
+    background-color: var(--light);
+    margin-top: 20px;
+    outline: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 13px;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 400px;
+    height: 400px;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* background-image: url(../images/card-background.jpg); */
+}
+
+.flex-item1 {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    width: 300px;
+}
+
+.flex-item2 {
+    background-color: var(--darkest);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.quiz-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 212px;
+}
+
+.quiz-question {
+    margin: 0;
+    padding: 0;
+}
+
+
+.flex-row {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#btnA, #btnB {
+    margin-top: 20px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: red;
+    color: black;
+    outline: none;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: "contra-nes";
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+
+.quizBtn {
+    width: 47%;
+    height: 50px;
+    border-radius: 16px;
+    background-color: var(--light);
+    margin-top: 10px;
+    outline: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+}
+
+.flex-footer {
+    display: flex;
+    height: 80px;
+    background-color: var(--darkest);
+    justify-content: flex-end;
+    /* position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%; */
+}
+
+#card-footer-text {
+    color: var(--light);
+    font-size: 12px;
+}
+
+.flex-item2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100px;
+}
+
+#timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 150px;
+    background-color: var(--light);
+    justify-content: center;
+}
+
+#timer-text {
+    display: flex;
+    flex-direction: coumn;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+}
+
+#counter {
+    font-size: 25px;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--lightest);
+    color: var(--darkest);
+    text-align: center;
+    text-align: center;
+    padding: 20px 0;
+    color: var(--darkest);
+}
