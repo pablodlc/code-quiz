@@ -1,56 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./assets/style/style.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+            rel="stylesheet"
+        />
+        <title>Code Quiz!</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/style/style.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <title>Code Quiz!</title>
-</head>
-
-<body>
-
-    <header>
-        <h1>
-            Code Quiz!
-        </h1>
-    </header>
-
-    
-    <main>
-        
+    <body>
+        <!-- Creating a div to wrap the elements I want to remove from the page -->
         <div id="removeMe">
+            <h1 style="text-align: center">Code Quiz!</h1>
+
             <h2 id="welcome-header">
-                Welcome to<br /> <span id="blink-me">Code Quiz!</span>
+                Welcome to<br />
+                <span id="blink-me">Code Quiz!</span>
             </h2>
 
-            <p id="welcom-body">
-                Test your mettle! How do you compare to your peers? <br />
+            <p id="welcome-body">
+                Test your mettle! <br />
+                How do you compare to your peers? <br />
                 You'll have 75 seconds to answer five questions. <br />
-                A right answer gives you 10 seconds.<br /> 
-                A wrong answer costs 10 seconds.<br/ >
-                At the end, your score is the seconds remaining. <br />
+                A right answer gives you 10 seconds.<br />
+                A wrong answer costs 10 seconds.<br/ > At the end, your score is
+                the seconds remaining. <br />
                 If you think you got what it takes, <br />
-                when you're ready, to begin Press Start! <br />
-                Good luck!!!
+                when you're ready to begin <br />
+                Press Start!!!
             </p>
 
-            <button id="start-quiz" onclick="startQuiz()">
-                Start!
-            </button>
+            <div class="flex-button">
+                <button id="startBtn" onclick="clearPage()">Start!</button>
+            </div>
         </div>
-        
 
-    </main>
+        <!-- Creating game play HTML elements, wrapped in a <div> to be styled hidded and visible -->
+        <div class="hideAndSeek">
+            <h2 id="question">Commonly used data types do NOT include:</h2>
 
+            <div class="flex-container-1">
+                <button id="btnA" class="flex-item" onclick="wrong()">
+                    A.
+                    <span class="answerA"> strings</span>
+                </button>
 
-    <footer class="footer">
-        <h2>Made with ❤️ by pablodlc</h2>
-    </footer>
+                <button id="btnB" class="flex-item" onclick="wrong()">
+                    B.
+                    <span class="answerB"> booleans</span>
+                </button>
+            </div>
 
-    <script src="assets/script/script.js"></script>
+            <div class="flex-container-2">
+                <button id="btnC" class="flex-item" onclick="right()">
+                    C.
+                    <span class="answerC"> alerts</span>
+                </button>
 
-</body>
+                <button id="btnD" class="flex-item" onclick="wrong()">
+                    D.
+                    <span class="answerD"> numbers</span>
+                </button>
+            </div>
+
+            <div class="flex-footer">
+                <h3>Time:<span class="timer" id="blink-me"></span></h3>
+                <p id="quizFooter">
+                    Click the button you think has the right answer! Or type A,
+                    B, C, or D on your keyboard!
+                </p>
+            </div>
+        </div>
+
+        <footer>
+            <h2>Made with ❤️ by pablodlc</h2>
+        </footer>
+
+        <script src="assets/script/script.js"></script>
+    </body>
+</html>
