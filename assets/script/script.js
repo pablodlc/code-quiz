@@ -1,64 +1,52 @@
-var timer = 75;
-document.querySelector(".timer").textContent = timer;
-
 var body = document.body;
+// Adding event listener to #startBtn
+document.querySelector("#startBtn").addEventListener("click", startQuiz);
+// declaring removeEl is #removeMe 
 var removeEl = document.querySelector("#removeMe");
-var hAndSEl = document.querySelector(".hideAndSeek");
 
 
-function clearPage() {
-    // Removing existing elements
+var questions = [
+    ["Commonly used data types do NOT include:", "strings", "booleans", "alerts", "numbers"],
+    ["The condition in an if/else statement is enclosed with:", "quotes", "curly brackets", "parenthesis", "square brackets"],
+    ["Arrays in JavaScipt can be used to store:", "numbers and strings", "other arrays", "booleans", "all of the above"],
+    ["String values must be enclosed within __________ when being assigned to variables.", "commas", "curly brackets", "quotes", "parenthesis"],
+    ["A very useful tool used during development and debugging for printing content to the debugger is:", "JavaScript", "terminal/bash", "for loops", "console log"],
+];
+
+
+
+
+function startQuiz() {
     removeEl.remove();
-    hAndSEl.style = "visibility: visible";
-}
 
-function right() {
-    timer = timer + 10;
-    document.querySelector(".timer").textContent = timer;
-}
+    alert([questions[0][0]] + [questions[0][3]]);
 
-function wrong() {
-    timer = timer - 10;
-    if (timer <= 0) {
-        var hiScore = confirm("You lost and the browser broke my fourth wall.\nPress OK to see the High Scores");
-        if (hiScore) {
-            alert("This is the HiScore page. It was programatically updated by manipulating the DOM using JavaScript. It's retro-chic, kitcshy, and fun. It's like John Waters took Shigeru Miyamoto out for a night on the town, watching Jeopardy! on the bar's TVs and playing a sticky Trivial Pursuit board game, and a divine hand reached out and smacked Shigeru upside the head in that too dark Baltimore brewery.  He pulled out his laptop and there was born what you see here; a master's magnum opus HiScores page.")
+    for (var i = 0; i < questions.length; i++) {
+        var htmlEl = [];
+        var questionsLength = questions[i].length;
+        // console.log(questions[i][0]);
+
+        var j = 0;
+        while (j < 5) {
+            var whileEl = [questions[i][j]];
+            htmlEl = [...whileEl];
+
+
+            console.log(htmlEl);
+            j++;
         }
 
-        location.reload();
+        // for (var j = 1; j < questionsLength; j++) {
+
+        //     var btnA = questions[i][j];
+        //     console.log(btnA);
+
+        //     console.log("B. " + questions[i][j + 2]);
+
+        //     console.log("C. " + questions[i][j + 3]);
+
+        //     console.log("D. " + questions[i][j + 4]);
+        i++;
     }
-    document.querySelector(".timer").textContent = timer;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Adding event listeners
-// document.querySelector(btnA).addEventListener("click", function() {
-//     console.log("A");
-// });
-
-// document.querySelector(btnB).addEventListener("click", function() {
-//     console.log("B");
-// });
-
-// document.querySelector(btnC).addEventListener("click", function() {
-//     console.log("C");
-// });
-// document.querySelector(btnD).addEventListener("click", function() {
-//     console.log("D");
-// })
+// }

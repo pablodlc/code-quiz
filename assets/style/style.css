@@ -7,9 +7,9 @@
 body {
     background: #9bbc0f;
     font-family: "Press Start 2P", cursive;
-    background-image: url("../images/giphygif.gif");
+    /* background-image: url("../images/giphygif.gif");
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: auto; */
 }
 
 :root {
