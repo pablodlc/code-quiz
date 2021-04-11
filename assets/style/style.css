@@ -25,9 +25,11 @@ h1 {
     padding-top: 20px;
 }
 
-h2 {
+h2,
+h3,
+h4 {
     color: var(--dark);
-    margin-top: 50px;
+    margin: 50px 100px 10px 100px;
     text-align: center;
     padding: 25px 0 25px 0;
 }
