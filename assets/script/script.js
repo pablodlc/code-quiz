@@ -6,7 +6,7 @@ var removeEl = document.querySelector("#removeMe");
 document.querySelector("#startBtn").addEventListener("click", startQuiz);
 // this is the timer, defaulting to 75
 var timer = 75;
-// this to use as an iterator placeholder in a loop
+// this to use as an iterator placeholder for the questions
 var currentQuestion = 0;
 
 // This is the text that will be diplayed on the DOM, separated as objects in an array to grab in a later function
@@ -27,33 +27,34 @@ var questions = [
         answerD: "square brackets",
         correct: "parenthesis"
     },
-    //     {
-    //         question: "Arrays in JavaScipt can be used to store:",
-    //         answerA: "numbers and strings",
-    //         answerB: "other arrays",
-    //         answerC: "booleans",
-    //         answerD: "all of the above",
-    //         correct: "all of the above"
-    //     },
-    //     {
-    //         question: "String values must be enclosed within __________ when being assigned to variables.",
-    //         answerA: "commas",
-    //         answerB: "curly brackets",
-    //         answerC: "quotes",
-    //         answerD: "parenthesis",
-    //         correct: "quotes"
-    //     },
-    //     {
-    //         question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-    //         answerA: "JavaScript",
-    //         answerB: "terminal/bash",
-    //         answerC: "for loops",
-    //         answerD: "console log",
-    //         correct: "for loops"
-    //     },
+    {
+        question: "Arrays in JavaScipt can be used to store:",
+        answerA: "numbers and strings",
+        answerB: "other arrays",
+        answerC: "booleans",
+        answerD: "all of the above",
+        correct: "all of the above"
+    },
+    {
+        question: "String values must be enclosed within __________ when being assigned to variables.",
+        answerA: "commas",
+        answerB: "curly brackets",
+        answerC: "quotes",
+        answerD: "parenthesis",
+        correct: "quotes"
+    },
+    {
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        answerA: "JavaScript",
+        answerB: "terminal/bash",
+        answerC: "for loops",
+        answerD: "console log",
+        correct: "for loops"
+    },
 ];
 
 // this for shorthand later for readability
+var quizEl = document.createElement("div");
 var h2El = document.createElement("h2");
 var btnAEl = document.createElement("button");
 var btnBEl = document.createElement("button");
@@ -74,54 +75,93 @@ function startQuiz() {
 
 // this to generate the HTML elements to display on the DOM
 function generateHTML() {
-    // var htmlEl = [];
-    // // this to use currentQuestion as the placeholder in the iterator to follow
-    // var questionsLength = questions[currentQuestion].length;
 
-    for (var i = 0; i < questions.length; i++) {
+    if (timer <= 0) {
+        gameOver();
+    }
+    if (currentQuestion > 4) {
+        gameOver();
+    }
+    else {
 
-        var questionString = questions[i].question;
+        // this to generate the question property value as an <h2> El
+        var questionString = questions[currentQuestion].question;
         h2El.textContent = questionString;
-        body.appendChild(h2El);
+        body.appendChild(quizEl);
+        quizEl.appendChild(h2El);
 
-        var btnAString = questions[i].answerA;
+        // this is make the quiz buttons, grabbing the answers as the button text. Repeating below for next three buttons.
+        var btnAString = questions[currentQuestion].answerA;
         btnAEl.textContent = "A. " + btnAString;
         // this to set class "quizButton" on all buttons in the quiz; using same syntax on following three buttons.
         btnAEl.className = "quizButton";
-        body.appendChild(btnAEl);
+        // this to give each button in the quiz a unique id
+        btnAEl.id = btnAString;
+        // This makes the click event, passing the current id as an arguement. Repeat three times below.
+        btnAEl.onclick = function (event) {
+            userAnswer(this.id);
+        }
+        quizEl.appendChild(btnAEl);
 
-        var btnBString = questions[i].answerB;
+        var btnBString = questions[currentQuestion].answerB;
         btnBEl.textContent = "B. " + btnBString;
         btnBEl.className = "quizButton";
-        body.appendChild(btnBEl);
+        btnBEl.id = btnBString;
+        btnBEl.onclick = function (event) {
+            userAnswer(this.id);
+        }
+        quizEl.appendChild(btnBEl);
 
-        var btnCString = questions[i].answerC;
+        var btnCString = questions[currentQuestion].answerC;
         btnCEl.textContent = "C. " + btnCString;
         btnCEl.className = "quizButton";
-        body.appendChild(btnCEl);
+        btnCEl.id = btnCString;
+        btnCEl.onclick = function (event) {
+            userAnswer(this.id);
+        }
+        quizEl.appendChild(btnCEl);
 
-        var btnDString = questions[i].answerD;
+        var btnDString = questions[currentQuestion].answerD;
         btnDEl.textContent = "D. " + btnDString;
         btnDEl.className = "quizButton";
-        body.appendChild(btnDEl);
+        btnDEl.id = btnDString;
+        btnDEl.onclick = function (event) {
+            userAnswer(this.id);
+        }
+        quizEl.appendChild(btnDEl);
 
         timerEl.textContent = "TIME: " + timer;
         body.appendChild(timerEl)
 
-        quizMessageEl.textContent = "Click on your answer or type A, B, C, or D on your keyboard!";
-        body.appendChild(quizMessageEl);
-
-        userAnswer();
-
-
-        i++;
+        quizMessageEl.textContent = "Click on your answer now!";
+        quizEl.appendChild(quizMessageEl);
     }
 }
 
-function userAnswer() {
-    alert("BOOM!");
-    // document.querySelectorAll(".quizButton").answer.addEventListener("click", function () {
-    //     alert("BOOM!");
-    // });
+function userAnswer(clicked) {
+    var answer = clicked;
+
+    if (answer === questions[currentQuestion].correct) {
+        timer = timer + 10;
+        quizMessageEl.textContent = "Right!";
+        quizEl.appendChild(quizMessageEl);
+        currentQuestion++;
+        // generateHTML();
+    }
+    else {
+        timer = timer - 10;
+        quizMessageEl.textContent = "Wrong.";
+        quizEl.appendChild(quizMessageEl);
+        currentQuestion++;
+
+    }
+
+
+    generateHTML();
+}
+
+function gameOver() {
+    let hiScores = confirm("Game Over! Would you like to see the hi-scores?");
+    // if (hiScores)
 }
 
